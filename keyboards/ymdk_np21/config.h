@@ -31,6 +31,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS 8
 #define MATRIX_COLS 15
 
+/*
+All used pins that i could find
+#define MATRIX_ROW_PINS { B0, B1, B2, B3, B4, B5, B6, B7 }
+#define MATRIX_COL_PINS { A0, A1, A2, A3, A4, A5, A6, A7, C7, C6, C5 }
+#define RGB_DI_PIN E2
+// Port D: digital pins of the AVR chipset
+#define NUMLOCK_PORT    (1 << 0)  // D0
+#define CAPSLOCK_PORT   (1 << 1)  // D1
+#define BACKLIGHT_PORT  (1 << 4)  // D4
+#define SCROLLLOCK_PORT (1 << 6)  // D6
+#USB  D2 D3
+
+#possibly free D5 D7
+ */
+
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
 
