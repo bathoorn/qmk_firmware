@@ -145,7 +145,10 @@ NOTE: These are all the same length.  If you do a search/replace
 #define _________________FUNC_LEFT_________________       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
 #define _________________FUNC_RIGHT________________       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
 
-#define ___________________BLANK___________________        _______, _______, _______, _______, _______
+#define ___________________BLANK___________________       _______, _______, _______, _______, _______
+
+#define _________________MODS_L1___________________       KC_PGDN, KC_PGUP, KC_END , KC_NO  , KC_SPC
+#define _________________MODS_L2___________________       KC_ENT , KC_NO  , KC_LEFT, KC_DOWN, KC_UP
 
 
 #define _________________LOWER_L1__________________        KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC

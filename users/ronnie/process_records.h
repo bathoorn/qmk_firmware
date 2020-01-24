@@ -18,11 +18,28 @@ enum userspace_custom_keycodes {
     UC_FLIP,        // (ಠ痊ಠ)┻━┻
     UC_TABL,        // ┬─┬ノ( º _ ºノ)
     UC_SHRG,        // ¯\_(ツ)_/¯
-    UC_DISA,        // ಠ_ಠ
+    UC_DISA,        // ಠ_
+    RGBRST,
+    RGB_MENU,
     NEW_SAFE_RANGE  // use "NEWPLACEHOLDER for keymap specific codes
 };
 
+/* Define layer names */
+enum layer_number {
+    _QWERTY  = 0,
+    _NUMLOCK = 0,
+    _COLEMAK,
+    _DVORAK,
+    _WORKMAN,
+    _LOWER,
+    _RAISE,
+#ifdef TRILAYER_ENABLED
+    _ADJUST
+#endif
+};
+
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
+bool process_record_encoder(uint16_t keycode, keyrecord_t *record);
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)

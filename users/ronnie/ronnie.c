@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "ronnie.h"
+#include "process_records.h"
 
 userspace_config_t userspace_config;
 #if (defined(UNICODE_ENABLE) || defined(UNICODEMAP_ENABLE) || defined(UCIS_ENABLE))
@@ -143,10 +144,6 @@ void matrix_scan_user(void) {
         startup_user();
     }
 
-#ifdef TAP_DANCE_ENABLE  // Run Diablo 3 macro checking code.
-    run_diablo_macro_check();
-#endif  // TAP_DANCE_ENABLE
-
 #ifdef RGBLIGHT_ENABLE
     matrix_scan_rgb();
 #endif  // RGBLIGHT_ENABLE
@@ -160,7 +157,9 @@ layer_state_t layer_state_set_keymap(layer_state_t state) { return state; }
 // on layer change, no matter where the change was initiated
 // Then runs keymap's layer change check
 layer_state_t layer_state_set_user(layer_state_t state) {
+#ifdef TRILAYER_ENABLED
     state = update_tri_layer_state(state, _RAISE, _LOWER, _ADJUST);
+#endif
 #ifdef RGBLIGHT_ENABLE
     state = layer_state_set_rgb(state);
 #endif  // RGBLIGHT_ENABLE

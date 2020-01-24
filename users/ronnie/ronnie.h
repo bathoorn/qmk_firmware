@@ -21,18 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "eeprom.h"
 #include "wrappers.h"
 #include "process_records.h"
+#include "timer_utils.h"
+#include "custom_keycodes.h"
 
-/* Define layer names */
-enum userspace_layers {
-    _QWERTY  = 0,
-    _NUMLOCK = 0,
-    _COLEMAK,
-    _DVORAK,
-    _WORKMAN,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
-};
 
 /*
 define modifiers here, since MOD_* doesn't seem to work for these
