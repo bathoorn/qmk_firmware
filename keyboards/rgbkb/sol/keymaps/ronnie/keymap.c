@@ -45,7 +45,7 @@
     KC_CAPS,LCT(K21),LGT(K22),LAT(K23),LST(K24), K25,    KC_LCBR,     KC_RCBR,    K26,RST(K27),RAT(K28),RGT(K29),RCT(K2A),     KC_QUOT, \
     KC_LSFT, K31,    K32,     K33,      K34,     K35,    KC_LPRN,     KC_RPRN,    K36,     K37,     K38,     K39,     K3A,     KC_RSFT, \
     KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_NO, KC_SPC,    KC_ENC1,     KC_ENC2, KC_ENT,RGB_MENU, KC_LEFT, KC_DOWN,   KC_UP,     KC_RGHT, \
-                                              KC_SPC, LO(KC_DEL), RS(KC_BSPC), KC_ENT \
+                                              LO(KC_DEL), KC_SPC, KC_ENT, RS(KC_BSPC) \
   )
 #define LAYOUT_sol2_base_wrapper(...)       LAYOUT_sol2_base(__VA_ARGS__)
 

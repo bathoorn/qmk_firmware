@@ -9,6 +9,7 @@
 
 uint16_t copy_paste_timer;
 
+
 //#ifdef TRILAYER_ENABLED
 //uint32_t layer_state_set_user(uint32_t state)
 //{
@@ -20,7 +21,6 @@ uint16_t copy_paste_timer;
 // Then runs the _keymap's record handier if not processed here
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint16_t reset_timer;
-
     switch (keycode) {
         case KC_QWERTY ... KC_WORKMAN:
             if (record->event.pressed) {
@@ -50,7 +50,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
 #endif
     }
-    return process_record_encoder(keycode, record) && process_record_keymap(keycode, record);
+    return process_record_encoder(keycode, record) && process_record_oled(keycode, record) && process_record_keymap(keycode, record);
 }
 
 __attribute__ ((weak))
@@ -61,6 +61,12 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record)
 
 __attribute__ ((weak))
 bool process_record_encoder(uint16_t keycode, keyrecord_t *record)
+{
+    return true;
+}
+
+__attribute__ ((weak))
+bool process_record_oled(uint16_t keycode, keyrecord_t *record)
 {
     return true;
 }

@@ -40,6 +40,7 @@ enum layer_number {
 
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 bool process_record_encoder(uint16_t keycode, keyrecord_t *record);
+bool process_record_oled(uint16_t keycode, keyrecord_t *record);
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
@@ -89,3 +90,23 @@ bool process_record_encoder(uint16_t keycode, keyrecord_t *record);
 
 #define UC_IRNY UC(0x2E2E)
 #define UC_CLUE UC(0x203D)
+
+// layer switching
+
+#define LO(K01)  LT(_LOWER, K01)
+#define RS(K01)  LT(_RAISE, K01)
+
+// modifier keys
+
+#define LCT(K01) LCTL_T(K01)
+#define LAT(K01) LALT_T(K01)
+#define LGT(K01) LGUI_T(K01)
+#define LST(K01) LSFT_T(K01)
+#define RCT(K01) RCTL_T(K01)
+#define RAT(K01) LALT_T(K01)
+#define RGT(K01) LGUI_T(K01)
+#define RST(K01) LSFT_T(K01)
+
+// transparent
+#undef  _______
+#define _______ KC_TRNS

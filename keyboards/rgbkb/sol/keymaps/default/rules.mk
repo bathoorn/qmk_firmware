@@ -8,7 +8,7 @@
 
 
 
-
+OLED_DRIVER_ENABLE = yes
 
 # Do not edit past here
 

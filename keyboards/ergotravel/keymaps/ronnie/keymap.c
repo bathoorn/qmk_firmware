@@ -1,7 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "ronnie.h"
 
-extern keymap_config_t keymap_config;
 
 // modifier keys
 
@@ -37,10 +36,10 @@ extern keymap_config_t keymap_config;
     K21, K22, K23, K24, K25, K26, K27, K28, K29, K2A  \
   ) \
   LAYOUT_wrapper( \
-    KC_ESC,  K01,    K02,     K03,      K04,     K05, KC_MINS,      KC_EQL , K06,     K07,     K08,     K09,     K0A,     KC_BSLS, \
-    KC_TAB, LCT(K11),LGT(K12),LAT(K13),LST(K14), K15, KC_LBRC,      KC_RBRC, K16, RST(K17), RAT(K18), RGT(K19), RCT(K1A), KC_QUOT, \
-    KC_LSFT, K21,    K22,     K23,      K24,     K25, KC_INS ,      KC_PSCR, K26,     K27,     K28,     K29,     K2A,     KC_RSFT, \
-    KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_SPC, LO(KC_DEL),           RS(KC_BSPC),  KC_ENT, KC_LEFT, KC_DOWN,     KC_UP,   KC_RGHT  \
+    KC_TAB,     K01,     K02,     K03,     K04,        K05, KC_MINS,    KC_EQL ,    K06,     K07,     K08,     K09,     K0A, KC_BSLS, \
+    KC_ESC,LCT(K11),LGT(K12),LAT(K13),LST(K14),        K15, KC_LBRC,    KC_RBRC,    K16,RST(K17),RAT(K18),RGT(K19),RCT(K1A), KC_QUOT, \
+    KC_CAPS,    K21,     K22,     K23,     K24,        K25, KC_INS ,    KC_PSCR,    K26,     K27,     K28,     K29,     K2A, KC_RSFT, \
+    KC_HOME,KC_PGDN, KC_PGUP,  KC_END,LO(KC_DEL),   KC_SPC,                   KC_ENT, RS(KC_BSPC),KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT  \
   )
 #define LAYOUT_ergotravel_base_wrapper(...)       LAYOUT_ergotravel_base(__VA_ARGS__)
 
@@ -73,23 +72,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_wrapper(
     KC_GRAVE, _________________LOWER_L1__________________, KC_MINS,      KC_EQL, _________________LOWER_R1__________________, _______,
-    _______ , _________________LOWER_L2__________________, KC_F6 ,      KC_RBRC, _________________LOWER_R2__________________, _______,
-    _______ , _________________LOWER_L3__________________, KC_F12,      KC_PSCR, _________________LOWER_R3__________________, _______,
+    _______ , _________________LOWER_L2__________________, KC_F11 ,     KC_RBRC, _________________LOWER_R2__________________, _______,
+    _______ , _________________LOWER_L3__________________, KC_F12 ,     KC_PSCR, _________________LOWER_R3__________________, _______,
     _______ , _______, _______, _______, _______, _______,                       _______, _______, _______, _______, _______, _______
   ),
 
   [_RAISE] = LAYOUT_wrapper(
     KC_GRAVE, _________________RAISE_L1__________________, KC_MINS,      KC_EQL, _________________RAISE_R1__________________, _______,
-    _______ , _________________RAISE_L2__________________, KC_F6 ,      KC_RBRC, _________________RAISE_R2__________________, _______,
-    _______ , _________________RAISE_L3__________________, KC_F12,      KC_PSCR, _________________RAISE_R3__________________, _______,
+    _______ , _________________RAISE_L2__________________, KC_F11 ,     KC_RBRC, _________________RAISE_R2__________________, _______,
+    _______ , _________________RAISE_L3__________________, KC_F12 ,     KC_PSCR, _________________RAISE_R3__________________, _______,
     _______ , _______, _______, _______, _______, _______,                       _______, _______, _______, _______, _______, _______
-  ),
-
+  )
+#ifdef TRILAYER_ENABLED
+  ,
   [_ADJUST] = LAYOUT_wrapper(
-    _______ , _________________ADJUST_L1_________________, _______,     _______, _________________ADJUST_L1_________________, _______,
+    RESET   , _________________ADJUST_L1_________________, _______,     _______, _________________ADJUST_L1_________________, _______,
     _______ , _________________ADJUST_L2_________________, _______,     _______, _________________ADJUST_R2_________________, _______,
     _______ , _________________ADJUST_L3_________________, _______,     _______, _________________ADJUST_R3_________________, _______,
     _______ , _______, _______, _______, _______, _______,                       _______, _______, _______, _______, _______, _______
   )
-
+#endif
 };

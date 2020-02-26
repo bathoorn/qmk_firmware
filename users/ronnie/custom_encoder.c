@@ -1,5 +1,6 @@
 #include "custom_encoder.h"
 #include "custom_keycodes.h"
+#include "process_records.h"
 
 #ifdef RGB_OLED_MENU
 #include "custom_rgb.h"
@@ -53,9 +54,38 @@ bool process_record_encoder(uint16_t keycode, keyrecord_t *record)
 }
 #endif // RGB_OLED_MENU
 
-const uint16_t PROGMEM encoders[][2] = {
-    { KC_PGUP, KC_PGDN },
-    { KC_VOLU, KC_VOLD }
+static pin_t encoders_pad_a[] = ENCODERS_PAD_A;
+#define NUMBER_OF_ENCODERS (sizeof(encoders_pad_a)/sizeof(pin_t))
+
+const uint16_t PROGMEM encoders[][NUMBER_OF_ENCODERS * 2][2]  = {
+    [_QWERTY] = {
+        { KC_TRNS, KC_TRNS },
+        { KC_TAB, LSFT(KC_TAB) }
+    },
+    [_COLEMAK] = {
+        { KC_TRNS, KC_TRNS },
+        { KC_TAB, LSFT(KC_TAB) }
+    },
+    [_DVORAK] = {
+        { KC_TRNS, KC_TRNS },
+        { KC_TAB, LSFT(KC_TAB) }
+    },
+    [_WORKMAN] = {
+        { KC_TRNS, KC_TRNS },
+        { KC_TAB, LSFT(KC_TAB) }
+    },
+    [_LOWER] = {
+        { KC_TRNS, KC_TRNS },
+        { KC_VOLU, KC_VOLD }
+    },
+    [_RAISE] = {
+        { KC_TRNS, KC_TRNS },
+        { KC_PGUP, KC_PGDN }
+    },
+    [_ADJUST] = {
+        { KC_TRNS, KC_TRNS },
+        { KC_TRNS, KC_TRNS }
+    },
 };
 
 void encoder_update_user(uint8_t index, bool clockwise)
@@ -65,8 +95,21 @@ void encoder_update_user(uint8_t index, bool clockwise)
 
 #ifdef RGB_OLED_MENU
     if (index == RGB_OLED_MENU)
+    {
         (*rgb_functions[rgb_encoder_state][clockwise])();
-    else
+    } else
 #endif // RGB_OLED_MENU
-        tap_code16(pgm_read_word(&encoders[index][clockwise]));
+    {
+        uint8_t layer = biton32(layer_state);
+        uint16_t keycode = encoders[layer][index][clockwise];
+        while (keycode == KC_TRANSPARENT && layer > 0)
+        {
+        layer--;
+        if ((layer_state & (1 << layer)) != 0)
+            keycode = encoders[layer][index][clockwise];
+        }
+        if (keycode != KC_TRANSPARENT)
+        tap_code16(keycode);
+    }
+
 }
