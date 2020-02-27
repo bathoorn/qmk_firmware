@@ -1,7 +1,6 @@
 #include "ronnie.h"
 #include "process_records.h"
 #include "custom_keycodes.h"
-#include "timer_utils.h"
 
 #ifdef RGB_ENABLE
 #include "custom_rgb.h"

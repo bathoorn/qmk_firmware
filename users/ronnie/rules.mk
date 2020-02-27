@@ -1,6 +1,5 @@
 SRC += ronnie.c \
-    process_records.c \
-    timer_utils.c
+    process_records.c
 
 # Some usual defaults
 MOUSEKEY_ENABLE         = no    # Mouse keys (+4700)

@@ -22,7 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "eeprom.h"
 #include "wrappers.h"
 #include "process_records.h"
-#include "timer_utils.h"
 #include "custom_keycodes.h"
 
 

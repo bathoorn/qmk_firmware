@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+extern uint8_t is_master;
+
 #ifdef RGBLIGHT_ENABLE
 rgblight_config_t rgblight_config;
 #endif
@@ -241,7 +243,7 @@ void oled_task_user(void)
 #    endif
 
     update_log();
-    if (is_keyboard_master()) {
+    if (is_master) {
         render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
         render_status_secondary();
