@@ -34,8 +34,9 @@ enum layer_number {
     _LOWER,
     _RAISE,
 #ifdef TRILAYER_ENABLED
-    _ADJUST
+    _ADJUST,
 #endif
+    _NAVI
 };
 
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
@@ -93,8 +94,10 @@ bool process_record_oled(uint16_t keycode, keyrecord_t *record);
 
 // layer switching
 
-#define LO(K01)  LT(_LOWER, K01)
-#define RS(K01)  LT(_RAISE, K01)
+#define LO(K01)  LT(_LOWER , K01)
+#define RS(K01)  LT(_RAISE , K01)
+#define NV(K01)  LT(_NAVI  , K01)
+#define AD(K01)  LT(_ADJUST, K01)
 
 // modifier keys
 

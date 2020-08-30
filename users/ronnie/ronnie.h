@@ -24,6 +24,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "process_records.h"
 #include "custom_keycodes.h"
 
+#if defined(RGBLIGHT_ENABLE)
+#    include "rgb_stuff.h"
+#endif
+#if defined(RGB_MATRIX_ENABLE)
+#    include "rgb_matrix_stuff.h"
+#endif
+#if defined(OLED_DRIVER_ENABLE)
+#    include "custom_oled.h"
+#endif
 
 /*
 define modifiers here, since MOD_* doesn't seem to work for these

@@ -1,9 +1,8 @@
-#include "custom_oled.h"
+#include "ronnie.h"
 #include "process_records.h"
 
 #include <stdio.h>
 
-extern uint8_t is_master;
 
 #ifdef RGBLIGHT_ENABLE
 rgblight_config_t rgblight_config;
@@ -159,7 +158,8 @@ void render_status_secondary(void) {
     /* Show Keyboard Layout  */
     render_default_layer_state();
     render_layer_state();
-    render_mod_status(get_mods() | get_oneshot_mods());
+    render_mod_status(get_mods());
+    /* | get_oneshot_mods()); */
 
 #ifdef KEYLOG_OLED
     render_keylogger_status();
@@ -242,8 +242,10 @@ void oled_task_user(void)
     }
 #    endif
 
+#    ifdef KEYLOG_OLED
     update_log();
-    if (is_master) {
+#    endif
+    if (is_keyboard_master()) {
         render_status_main();  // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
         render_status_secondary();

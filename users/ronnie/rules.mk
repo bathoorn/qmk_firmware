@@ -15,9 +15,23 @@ ifeq ($(strip $(ENCODER_ENABLE)), yes)
   SRC += custom_encoder.c
 endif
 
+ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
+    SRC += rgb_stuff.c
+    ifeq ($(strip $(RGBLIGHT_TWINKLE)), yes)
+        OPT_DEFS += -DRGBLIGHT_TWINKLE
+    endif
+    ifeq ($(strip $(RGBLIGHT_NOEEPROM)), yes)
+        OPT_DEFS += -DRGBLIGHT_NOEEPROM
+    endif
+    ifeq ($(strip $(RGBLIGHT_STARTUP_ANIMATION)), yes)
+        OPT_DEFS += -DRGBLIGHT_STARTUP_ANIMATION
+    endif
+endif
+
 ifneq ($(strip $(RGB_MATRIX_ENABLE)), no)
   OPT_DEFS += -DRGB_ENABLE
   SRC += custom_rgb.c
+  SRC += rgb_matrix_stuff.c
 endif
 
 ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
