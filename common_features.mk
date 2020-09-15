@@ -397,9 +397,20 @@ ifneq ($(strip $(CUSTOM_MATRIX)), yes)
     endif
 endif
 
+# Support for translating old names to new names:
+ifeq ($(strip $(DEBOUNCE_TYPE)),sym_g)
+    DEBOUNCE_TYPE:=sym_defer_g
+else ifeq ($(strip $(DEBOUNCE_TYPE)),eager_pk)
+    DEBOUNCE_TYPE:=sym_eager_pk
+else ifeq ($(strip $(DEBOUNCE_TYPE)),sym_pk)
+    DEBOUNCE_TYPE:=sym_defer_pk
+else ifeq ($(strip $(DEBOUNCE_TYPE)),eager_pr)
+    DEBOUNCE_TYPE:=sym_eager_pr
+endif
+
 DEBOUNCE_DIR:= $(QUANTUM_DIR)/debounce
 # Debounce Modules. Set DEBOUNCE_TYPE=custom if including one manually.
-DEBOUNCE_TYPE?= sym_g
+DEBOUNCE_TYPE?= sym_defer_g
 ifneq ($(strip $(DEBOUNCE_TYPE)), custom)
     QUANTUM_SRC += $(DEBOUNCE_DIR)/$(strip $(DEBOUNCE_TYPE)).c
 endif
@@ -417,8 +428,10 @@ ifeq ($(strip $(SPLIT_KEYBOARD)), yes)
         # Functions added via QUANTUM_LIB_SRC are only included in the final binary if they're called.
         # Unused functions are pruned away, which is why we can add multiple drivers here without bloat.
         ifeq ($(PLATFORM),AVR)
-            QUANTUM_LIB_SRC += i2c_master.c \
-                               i2c_slave.c
+            ifneq ($(NO_I2C),yes)
+                QUANTUM_LIB_SRC += i2c_master.c \
+                                   i2c_slave.c
+            endif
         endif
 
         SERIAL_DRIVER ?= bitbang
