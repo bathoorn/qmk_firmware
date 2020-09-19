@@ -11,23 +11,6 @@ enum combo_events {
   COMBO_SLSH
 };
 
-// layer switching
-
-#define LO(K01)  LT(_LOWER , K01)
-#define RZ(K01)  LT(_RAISE , K01)
-#define AD(K01)  LT(_ADJUST, K01)
-
-// modifier keys
-
-#define LC(K01) LCTL_T(K01)
-#define LA(K01) LALT_T(K01)
-#define LG(K01) LGUI_T(K01)
-#define LS(K01) LSFT_T(K01)
-#define RC(K01) RCTL_T(K01)
-#define RA(K01) LALT_T(K01)
-#define RG(K01) LGUI_T(K01)
-#define RS(K01) LSFT_T(K01)
-
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -59,10 +42,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL, KC_LGUI, LO(KC_DEL), KC_SPACE, KC_ENT, RZ(KC_BSPC), KC_RGUI, KC_RCTL
   ),
   [_VIM] = LAYOUT_split_space(
-  _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______
+	KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P,
+	KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN,
+    KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M, KC_DLR, KC_LSFT,
+    KC_0,    KC_1,    KC_2, KC_SPACE, KC_ENT, KC_3,    KC_4,    KC_5
   )
 };
 

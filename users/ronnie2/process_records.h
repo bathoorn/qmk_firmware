@@ -42,9 +42,9 @@ bool process_record_oled(uint16_t keycode, keyrecord_t *record);
 #define LG(K01) LGUI_T(K01)
 #define LS(K01) LSFT_T(K01)
 #define RC(K01) RCTL_T(K01)
-#define RA(K01) LALT_T(K01)
-#define RG(K01) LGUI_T(K01)
-#define RS(K01) LSFT_T(K01)
+#define RA(K01) RALT_T(K01)
+#define RG(K01) RGUI_T(K01)
+#define RS(K01) RSFT_T(K01)
 
 // transparent
 #undef  _______
